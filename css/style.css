@@ -60,6 +60,11 @@ img {
   max-width: 100%;
 }
 
+/* 화면 크기별 줄바꿈 (Figma 시안의 줄바꿈 위치가 데스크톱·모바일에서 다를 때) */
+.br-mobile {
+  display: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -90,6 +95,7 @@ img {
 .icon--person-outline     { --icon: url("../images/icons/person-outline.svg"); }
 .icon--mail-outline       { --icon: url("../images/icons/mail-outline.svg"); }
 .icon--close              { --icon: url("../images/icons/close.svg"); }
+.icon--north-east         { --icon: url("../images/icons/north-east.svg"); }
 
 /* --------------------------------------------------------------------------
    3. gnb
@@ -391,7 +397,251 @@ html.is-modal-open {
 }
 
 /* --------------------------------------------------------------------------
-   9. 1539px 이하 — gnb·footer 모바일 variant, main 세로선 없음
+   9. 상세화면 — prj-header / prj-meta-list / prj-links / prj-overview
+   -------------------------------------------------------------------------- */
+.prj-header {
+  border-bottom: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-page);
+}
+.prj-info {
+  display: flex;
+  align-items: stretch;
+  max-width: 1540px;
+  margin-inline: auto;
+  background-color: var(--color-bg-inverse);
+}
+.prj-info .back-link {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding-inline: var(--padding-inline);
+  color: var(--color-text-inverse-secondary);
+  white-space: nowrap;
+}
+.prj-info .back-link .icon {
+  color: var(--color-icon-inverse-secondary);
+}
+.prj-info .title-container {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-4);
+  min-width: 0;
+  height: var(--size-60);
+  padding-inline: var(--padding-inline);
+  white-space: nowrap;
+}
+.prj-info .prj-title {
+  color: var(--color-text-inverse);
+}
+.prj-info .prj-role {
+  color: var(--color-text-inverse-tertiary);
+}
+
+/* 메타 정보 3칸 */
+.prj-meta-list {
+  display: flex;
+  height: 70px; /* Figma: 아래 선 포함 70 */
+  margin: 0;
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.prj-meta-item {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-8);
+  min-width: 0;
+  padding-inline: var(--padding-inline);
+  white-space: nowrap;
+}
+.prj-meta-item + .prj-meta-item {
+  border-left: 1px solid var(--color-border-strong);
+}
+.prj-meta-item dt {
+  color: var(--color-text-tertiary);
+}
+.prj-meta-item .value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.prj-meta-item .meta-caption {
+  color: var(--color-text-tertiary);
+}
+
+/* 외부 링크 */
+.prj-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--size-8);
+  padding: var(--padding-links-top) var(--padding-inline) 0;
+}
+.prj-link-list {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+}
+.prj-links .notice {
+  color: var(--color-text-tertiary);
+  text-align: right;
+}
+.btn-link {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--size-8) var(--size-8) var(--size-8) var(--size-12);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-accent);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+.btn-link .icon {
+  color: var(--color-icon-default);
+}
+
+/* overview */
+.prj-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-40);
+  padding: var(--size-80) var(--padding-inline);
+}
+.prj-overview .intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-12);
+}
+.prj-overview .eyebrow {
+  color: var(--color-text-eyebrow);
+}
+.prj-overview .lead {
+  color: var(--color-text-primary);
+}
+.keyword-list {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-20);
+  color: var(--color-text-secondary);
+}
+.prj-keyword-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+  width: 265px;
+}
+
+/* --------------------------------------------------------------------------
+   10. 상세화면 — 챕터·섹션·아이템
+   -------------------------------------------------------------------------- */
+.prj-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-chapter);
+  padding-bottom: var(--gap-chapter); /* 마지막 챕터와 footer 사이 (Figma prj-chapters 하단 여백) */
+}
+
+.prj-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+  padding-inline: var(--padding-inline);
+}
+
+.prj-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-chapter-content);
+}
+.prj-chapter-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-chapter-header);
+  padding: var(--size-24) var(--padding-inline);
+  border-top: 1px solid var(--color-border-strong);
+}
+.prj-chapter-header .eyebrow {
+  color: var(--color-text-eyebrow);
+}
+.prj-chapter-header .heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+.prj-chapter-header .title {
+  color: var(--color-text-primary);
+}
+.prj-chapter-header .description {
+  color: var(--color-text-secondary);
+}
+
+.prj-section-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+  padding-inline: var(--padding-inline);
+}
+.prj-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section-content);
+}
+.prj-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+.prj-section-heading .title {
+  color: var(--color-text-primary);
+}
+.prj-section-heading .description {
+  color: var(--color-text-secondary);
+}
+
+.prj-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-caption);
+}
+.caption {
+  color: var(--color-text-tertiary);
+}
+
+/* 이미지 목록 */
+.prj-img-list--wide-narrow {
+  display: flex;
+  gap: var(--size-20);
+}
+/* 835 : 645 (Figma 폭 비율) — 두 이미지 높이가 같게 유지됨 */
+.prj-img-list--wide-narrow > :first-child { flex: 835 1 0; min-width: 0; }
+.prj-img-list--wide-narrow > :last-child  { flex: 645 1 0; min-width: 0; }
+
+/* 회고 */
+.prj-retrospect-list {
+  display: flex;
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+.prj-retrospect-card {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--gap-card);
+  min-width: 0;
+  padding: var(--padding-card-block) var(--padding-card-inline);
+}
+.prj-retrospect-card + .prj-retrospect-card {
+  border-left: 1px solid var(--color-border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   11. 1539px 이하 — gnb·footer 모바일 variant, main 세로선 없음
    -------------------------------------------------------------------------- */
 @media (max-width: 1539px) {
   .gnb .inner,
@@ -402,9 +652,16 @@ html.is-modal-open {
 }
 
 /* --------------------------------------------------------------------------
-   10. 767px 이하 — 전체 모바일
+   12. 767px 이하 — 전체 모바일
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
+  .br-desktop {
+    display: none;
+  }
+  .br-mobile {
+    display: inline;
+  }
+
   .home-hero {
     padding-block: var(--size-80);
   }
@@ -453,5 +710,80 @@ html.is-modal-open {
   }
   .home-list-row--nested .meta-container {
     padding-left: var(--padding-inline);
+  }
+
+  /* 상세화면 */
+  .prj-info .back-link {
+    display: none;
+  }
+  .prj-info .title-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: auto;
+    padding-block: var(--size-20);
+    white-space: normal;
+  }
+  .prj-info .prj-role {
+    color: var(--color-text-inverse-secondary);
+  }
+
+  /* 모바일: 세로로 쌓고 칸마다 아래 선 (Figma: 선 포함 70 × 3 = 210) */
+  .prj-meta-list {
+    flex-direction: column;
+    height: auto;
+    border-bottom: 0;
+  }
+  .prj-meta-item {
+    flex: none;
+    height: 70px;
+    border-bottom: 1px solid var(--color-border-strong);
+  }
+  .prj-meta-item + .prj-meta-item {
+    border-left: 0;
+  }
+
+  .prj-overview {
+    gap: var(--size-48);
+    padding-block: var(--size-60);
+  }
+  .prj-overview .intro {
+    gap: var(--size-8);
+  }
+  .keyword-list {
+    flex-direction: column;
+    gap: var(--size-16);
+    width: 100%;
+  }
+  .prj-keyword-item {
+    width: 100%;
+  }
+
+  /* 커버·전체 폭 이미지: 320×200 비율로 가운데 기준 자르기 (Figma 모바일 시안) */
+  .prj-cover,
+  .prj-item > .prj-img-container {
+    aspect-ratio: 320 / 200;
+    overflow: hidden;
+  }
+  .prj-cover img,
+  .prj-item > .prj-img-container img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .prj-img-list--wide-narrow {
+    flex-direction: column;
+  }
+  .prj-img-list--wide-narrow > :first-child,
+  .prj-img-list--wide-narrow > :last-child {
+    flex: none;
+  }
+
+  .prj-retrospect-list {
+    flex-direction: column;
+  }
+  .prj-retrospect-card + .prj-retrospect-card {
+    border-left: 0;
+    border-top: 1px solid var(--color-border-strong);
   }
 }
