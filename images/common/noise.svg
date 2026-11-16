@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <filter id="noise" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <!-- ① 촘촘한 무작위 값 생성 (크기 0.5에 맞춰 입자를 아주 잘게) -->
+    <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="1" stitchTiles="stitch" result="n"/>
+
+    <!-- ② 어두운 점: 값이 절반보다 낮은 픽셀 → 검정 8% -->
+    <feColorMatrix in="n" type="matrix"
+      values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="d"/>
+    <feComponentTransfer in="d" result="dark">
+      <feFuncA type="discrete" tableValues="0.08 0"/>
+    </feComponentTransfer>
+
+    <!-- ③ 밝은 점: 값이 절반보다 높은 픽셀 → 흰색 7% -->
+    <feColorMatrix in="n" type="matrix"
+      values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1 0 0 0 0" result="l"/>
+    <feComponentTransfer in="l" result="light">
+      <feFuncA type="discrete" tableValues="0 0.07"/>
+    </feComponentTransfer>
+
+    <!-- ④ 두 점을 합치기 -->
+    <feMerge>
+      <feMergeNode in="dark"/>
+      <feMergeNode in="light"/>
+    </feMerge>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noise)"/>
+</svg>
