@@ -621,6 +621,36 @@ html.is-modal-open {
 .prj-img-list--wide-narrow > :first-child { flex: 835 1 0; min-width: 0; }
 .prj-img-list--wide-narrow > :last-child  { flex: 645 1 0; min-width: 0; }
 
+/* 2열·3열·세로 3장 목록 */
+.prj-img-list--cols-2 {
+  display: flex;
+  align-items: stretch;
+  gap: var(--size-20);
+}
+.prj-img-list--cols-2 > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.prj-item-list--cols-2,
+.prj-item-list--cols-3 {
+  display: grid;
+  align-items: start;
+}
+.prj-item-list--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-item-list);
+}
+.prj-item-list--cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-item-list);
+}
+/* 세로 3장: 옆 이미지 높이에 맞춰 늘어나고 남는 공간은 사이 간격으로 */
+.prj-img-list--rows-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 /* 회고 */
 .prj-retrospect-list {
   display: flex;
@@ -759,16 +789,41 @@ html.is-modal-open {
     width: 100%;
   }
 
-  /* 커버·전체 폭 이미지: 320×200 비율로 가운데 기준 자르기 (Figma 모바일 시안) */
+  /* 커버·전체 폭 이미지(한 줄에 1장): 320×200 비율로 가운데 기준 자르기 (Figma 모바일 시안) */
   .prj-cover,
-  .prj-item > .prj-img-container {
+  .prj-section > .prj-item > .prj-img-container {
     aspect-ratio: 320 / 200;
     overflow: hidden;
   }
   .prj-cover img,
-  .prj-item > .prj-img-container img {
+  .prj-section > .prj-item > .prj-img-container img {
     height: 100%;
     object-fit: cover;
+  }
+
+  /* 여러 장 목록은 세로로 쌓기 (원본 비율 유지) */
+  .prj-img-list--cols-2 {
+    flex-direction: column;
+  }
+  .prj-img-list--cols-2 > * {
+    flex: none;
+  }
+  .prj-img-list--rows-3 {
+    gap: var(--size-20);
+  }
+  .prj-item-list--cols-2,
+  .prj-item-list--cols-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 섹션 설명을 모바일에서 이미지 아래 캡션으로 (이러닝 구축 '스터디랩' 섹션 시안) */
+  .prj-section--desc-below .prj-section-heading {
+    display: contents;
+  }
+  .prj-section--desc-below .prj-section-heading .description {
+    order: 1;
+    margin-top: calc(var(--gap-caption) - var(--gap-section-content));
+    color: var(--color-text-tertiary);
   }
 
   .prj-img-list--wide-narrow {
