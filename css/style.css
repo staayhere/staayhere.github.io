@@ -681,6 +681,33 @@ html.is-modal-open {
     justify-content: space-between;
 }
 
+/* 이미지 위 라벨 칩 (이러닝 운영 before / after)
+   위치는 Figma 기준(740×750 컨테이너의 위 40px, 가운데)을 비율로 유지 */
+.prj-img-container {
+    position: relative;
+}
+.prj-label {
+    position: absolute;
+    top: calc(100% * 40 / 750);
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    align-items: center;
+    height: var(--size-24);
+    padding: 0 var(--size-8);
+    border-radius: var(--size-4);
+    white-space: nowrap;
+}
+.prj-label--before {
+    border: 1px solid var(--color-border-divider);
+    background-color: var(--color-bg-label);
+    color: var(--color-text-tertiary);
+}
+.prj-label--after {
+    background-color: var(--color-bg-label-strong);
+    color: var(--color-text-inverse);
+}
+
 /* 회고 */
 .prj-retrospect-list {
     display: flex;

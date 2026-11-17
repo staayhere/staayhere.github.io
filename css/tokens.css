@@ -1,7 +1,7 @@
 /* ==========================================================================
    tokens.css — 웹 포트폴리오 디자인 토큰
    Figma "포트폴리오 > 웹 포트폴리오" 변수·텍스트 스타일 기준 (2026-11-16)
-   - 이미지로 추출한 요소(코드창, 목업)에만 쓰인 값은 제외: code-palette, code/*, radius/*, code·label 텍스트 스타일
+   - 이미지로 추출한 요소(코드창, 목업)에만 쓰인 값은 제외: code-palette, code/*, radius/*, code 텍스트 스타일
    - 1. primitive : 원본 값. 화면에서 직접 쓰지 않고 semantic에서 참조
    - 2. semantic  : 역할별 색상. 화면에서는 이 변수를 사용
    - 3. project   : 상세화면별 이미지 배경 (.prj--{폴더명})
@@ -81,6 +81,8 @@
   --color-bg-accent: var(--mint-200);
   --color-bg-accent-subtle: var(--mint-100);
   --color-overlay-dim: var(--black-alpha-30);
+  --color-bg-label: var(--neutral-300);
+  --color-bg-label-strong: var(--neutral-800);
 
   /* text */
   --color-text-primary: var(--neutral-900);
@@ -224,6 +226,9 @@
 .t-meta-label   { font-family: var(--font-family-sans); font-weight: 600; font-size: var(--font-size-16); line-height: 1.5; letter-spacing: -0.02em; }
 .t-meta-value   { font-family: var(--font-family-sans); font-weight: 500; font-size: var(--font-size-16); line-height: 1.5; letter-spacing: -0.02em; }
 .t-meta-caption { font-family: var(--font-family-sans); font-weight: 500; font-size: var(--font-size-13); line-height: 1.5; letter-spacing: -0.02em; }
+
+/* label */
+.t-label-badge { font-family: var(--font-family-sans); font-weight: 600; font-size: var(--font-size-13); line-height: 1.5; letter-spacing: -0.02em; }
 
 /* about modal */
 .t-about-title   { font-family: var(--font-family-sans); font-weight: 600; font-size: var(--font-size-16); line-height: 1.5; letter-spacing: -0.02em; }
