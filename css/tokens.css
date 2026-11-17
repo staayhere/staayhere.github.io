@@ -159,7 +159,7 @@
 }
 
 /* 모바일 — 시안 폭 360px 기준. 분기점은 실제 레이아웃에 맞게 조정 */
-@media (max-width: 767px) {
+@media (max-width: 1119px) {
   :root {
     --gap-section: var(--size-60);
     --gap-chapter: var(--size-120);
