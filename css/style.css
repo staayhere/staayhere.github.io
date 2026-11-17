@@ -1,7 +1,7 @@
 /* ==========================================================================
    style.css — 공통 레이아웃·컴포넌트
    값은 모두 tokens.css 변수 사용
-   분기점: 1539px 이하(gnb·footer 모바일, main 세로선 없음) / 1119px 이하(전체 모바일)
+   분기점: 1199px 이하(gnb·footer 모바일, main 좌우 여백·세로선 없음) / 1119px 이하(전체 모바일)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -105,7 +105,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1540px;
+  width: var(--layout-inner-width);
   height: var(--size-60);
   margin-inline: auto;
   padding-inline: var(--padding-inline);
@@ -129,7 +129,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  max-width: 1540px;
+  width: var(--layout-inner-width);
   height: var(--size-60);
   margin-inline: auto;
   padding-inline: var(--padding-inline);
@@ -143,10 +143,14 @@ img {
 /* --------------------------------------------------------------------------
    5. main — 본문 1540px, 좌우 세로선은 화면 끝까지
    -------------------------------------------------------------------------- */
+/* gnb·footer inner, main, prj-info 공통 폭
+   시안(1920px 화면에 본문 1540px)의 비율을 유지해 좁아질수록 좌우 여백도 함께 줄어듦 */
+:root {
+  --layout-inner-width: min(1540px, 100% * 1540 / 1920);
+}
 .main {
   flex: 1 0 auto;
-  width: 100%;
-  max-width: 1540px;
+  width: var(--layout-inner-width);
   margin-inline: auto;
   border-inline: 1px solid var(--color-border-strong);
 }
@@ -400,7 +404,7 @@ html.is-modal-open {
 .prj-info {
   display: flex;
   align-items: stretch;
-  max-width: 1540px;
+  width: var(--layout-inner-width);
   margin-inline: auto;
   background-color: var(--color-bg-inverse);
 }
@@ -669,9 +673,12 @@ html.is-modal-open {
 }
 
 /* --------------------------------------------------------------------------
-   11. 1539px 이하 — gnb·footer 모바일 variant, main 세로선 없음
+   11. 1199px 이하 — gnb·footer 모바일 variant, main 좌우 여백·세로선 없음
    -------------------------------------------------------------------------- */
-@media (max-width: 1539px) {
+@media (max-width: 1199px) {
+  :root {
+    --layout-inner-width: 100%;
+  }
   .gnb .inner,
   .footer .inner,
   .main {
