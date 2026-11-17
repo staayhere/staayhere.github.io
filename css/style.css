@@ -520,6 +520,10 @@ html.is-modal-open {
 .prj-overview .lead {
   color: var(--color-text-primary);
 }
+/* lead 아래 보충 문구 (아트 펀딩 ※ 안내) */
+.prj-overview .note {
+  color: var(--color-text-tertiary);
+}
 .keyword-list {
   display: flex;
   align-items: flex-start;
