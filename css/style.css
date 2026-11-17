@@ -25,6 +25,8 @@ body {
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   font-family: var(--font-family-sans);
+  word-break: keep-all; /* 한글을 단어 단위로 줄바꿈 */
+  overflow-wrap: break-word; /* 긴 영문·URL은 넘치지 않게 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,11 +60,6 @@ button {
 img {
   display: block;
   max-width: 100%;
-}
-
-/* 화면 크기별 줄바꿈 (Figma 시안의 줄바꿈 위치가 데스크톱·모바일에서 다를 때) */
-.br-mobile {
-  display: none;
 }
 
 .sr-only {
@@ -685,11 +682,9 @@ html.is-modal-open {
    12. 767px 이하 — 전체 모바일
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
+  /* 데스크톱 시안에만 있는 줄바꿈 */
   .br-desktop {
     display: none;
-  }
-  .br-mobile {
-    display: inline;
   }
 
   .home-hero {
