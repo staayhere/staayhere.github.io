@@ -18,6 +18,13 @@
         <link rel="stylesheet" href="../css/fonts.css" />
         <link rel="stylesheet" href="../css/tokens.css" />
         <link rel="stylesheet" href="../css/style.css" />
+        <script>
+            // 스크롤 등장 애니메이션: 스크립트가 실행되고 동작 줄이기 설정이 없을 때만 대상 요소를 숨김
+            if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                document.documentElement.classList.add("has-reveal");
+            }
+        </script>
+        <script src="../js/reveal.js" defer onerror="document.documentElement.classList.remove('has-reveal')"></script>
     </head>
     <body>
         <header class="prj-top">
