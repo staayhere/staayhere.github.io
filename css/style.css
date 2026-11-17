@@ -815,6 +815,10 @@ html.is-modal-open {
   .prj-item-list--cols-3 {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* 캡션 없이 이미지만 있는 목록(이러닝 운영 띠배너)은 이미지 목록 간격 */
+  .prj-item-list--cols-3:not(:has(> .prj-item)) {
+    gap: var(--size-20);
+  }
 
   /* 섹션 설명을 모바일에서 이미지 아래 캡션으로 (이러닝 구축 '스터디랩' 섹션 시안) */
   .prj-section--desc-below .prj-section-heading {
